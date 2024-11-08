@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: "2010-09-09"
-Description: Factorio Spot Price Server via Docker / ECS
+Description: Palword Spot Price Server via Docker / ECS
 Parameters:
 
   ECSAMI:
@@ -7,14 +7,14 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id
 
-  FactorioImageTag:
+  PalworldImageTag:
     Type: String
-    Description: "(Examples include latest, stable, 0.17, 0.17.33) Refer to tag descriptions available here: https://hub.docker.com/r/factoriotools/factorio/)"
+    Description: "(Examples include latest, stable, 0.17, 0.17.33) Refer to tag descriptions available here: https://hub.docker.com/r/thijsvanloef/palworld-server-docker)"
     Default: stable
 
   ServerState:
     Type: String
-    Description: "Running: A spot instance will launch shortly after setting this parameter; your Factorio server should start within 5-10 minutes of changing this parameter (once UPDATE_IN_PROGRESS becomes UPDATE_COMPLETE). Stopped: Your spot instance (and thus Factorio container) will be terminated shortly after setting this parameter."
+    Description: "Running: A spot instance will launch shortly after setting this parameter; your palworld server should start within 5-10 minutes of changing this parameter (once UPDATE_IN_PROGRESS becomes UPDATE_COMPLETE). Stopped: Your spot instance (and thus palworld container) will be terminated shortly after setting this parameter."
     Default: Running
     AllowedValues:
     - Running
@@ -60,37 +60,13 @@ Parameters:
 
   HostedZoneId:
     Type: String
-    Description: (Optional - An empty value disables this feature) If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Factorio instance starts, supply the hosted zone ID here.
+    Description: (Optional - An empty value disables this feature) If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Palworld instance starts, supply the hosted zone ID here.
     Default: ''
 
   RecordName:
     Type: String
-    Description: (Optional - An empty value disables this feature) If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Factorio instance starts, supply the name of the record here (e.g. factorio.mydomain.com).
+    Description: (Optional - An empty value disables this feature) If you have a hosted zone in Route 53 and wish to set a DNS record whenever your palworld instance starts, supply the name of the record here (e.g. palworld.mydomain.com).
     Default: ''
-
-  EnableRcon:
-    Type: String
-    Description: Refer to https://hub.docker.com/r/factoriotools/factorio/ for further RCON configuration details. This parameter simply opens / closes the port on the security group.
-    Default: false
-    AllowedValues:
-    - true
-    - false
-
-  DlcSpaceAge:
-    Type: String
-    Description: Refer to https://hub.docker.com/r/factoriotools/factorio/ for further information about Space Age. Enables or disable Space Age mods. Everybody that wants to use these servers will have to have mods enabled or disabled respectively for the Space Age expansion pack. Irrelevant if docker image for factorio is set to be prior to v2.
-    Default: false
-    AllowedValues:
-    - true
-    - false
-
-  UpdateModsOnStart:
-    Type: String
-    Description: Refer to https://hub.docker.com/r/factoriotools/factorio/ for further configuration details.
-    Default: false
-    AllowedValues:
-    - true
-    - false
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -98,11 +74,8 @@ Metadata:
       - Label:
           default: Essential Configuration
         Parameters:
-        - FactorioImageTag
-        - DlcSpaceAge
+        - PalworldImageTag
         - ServerState
-        - EnableRcon
-        - UpdateModsOnStart
       - Label:
           default: Instance Configuration
         Parameters:
@@ -122,12 +95,10 @@ Metadata:
         - HostedZoneId
         - RecordName
     ParameterLabels:
-      FactorioImageTag:
-        default: "Which version of Factorio do you want to launch?"
-      DlcSpaceAge:
-        default: "Do you want everybody that connects to be using the Spage Age Expansion or not?"
+      PalworldImageTag:
+        default: "Which version of Palworld do you want to launch?"
       ServerState:
-        default: "Update this parameter to shut down / start up your Factorio server as required to save on cost. Takes a few minutes to take effect."
+        default: "Update this parameter to shut down / start up your Palworld server as required to save on cost. Takes a few minutes to take effect."
       InstanceType:
         default: "Which instance type? You must make sure this is available in your region! https://aws.amazon.com/ec2/pricing/on-demand/"
       KeyPairName:
@@ -135,13 +106,9 @@ Metadata:
       YourIp:
         default: "If you wish to access the instance via SSH, provide your public IP address."
       HostedZoneId:
-        default: "If you have a hosted zone in Route 53 and wish to update a DNS record whenever your Factorio instance starts, supply the hosted zone ID here."
+        default: "If you have a hosted zone in Route 53 and wish to update a DNS record whenever your Palworld instance starts, supply the hosted zone ID here."
       RecordName:
-        default: "If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Factorio instance starts, supply a record name here (e.g. factorio.mydomain.com)."
-      EnableRcon:
-        default: "Do you wish to enable RCON?"
-      UpdateModsOnStart:
-        default: "Do you wish to update your mods on container start"
+        default: "If you have a hosted zone in Route 53 and wish to set a DNS record whenever your Palworld instance starts, supply a record name here (e.g. palworld.mydomain.com)."
 Conditions:
   KeyPairNameProvided: !Not [ !Equals [ !Ref KeyPairName, '' ] ]
   IpAddressProvided: !Not [ !Equals [ !Ref YourIp, '' ] ]
@@ -283,17 +250,14 @@ Resources:
           IpProtocol: tcp
           CidrIp: !Sub "${YourIp}/32"
         - !Ref 'AWS::NoValue'
-      - FromPort: 34197
-        ToPort: 34197
+      - FromPort: 8211
+        ToPort: 8211
         IpProtocol: udp
         CidrIp: 0.0.0.0/0
-      - !If
-        - DoEnableRcon
-        - FromPort: 27015
-          ToPort: 27015
-          IpProtocol: tcp
-          CidrIp: 0.0.0.0/0
-        - !Ref 'AWS::NoValue'
+      - FromPort: 27015
+        ToPort: 27015
+        IpProtocol: tcp
+        CidrIp: 0.0.0.0/0
       VpcId: !Ref Vpc
 
   LaunchTemplate:
@@ -396,30 +360,25 @@ Resources:
     - MountB
     Properties:
       Volumes:
-      - Name: factorio
+      - Name: Palworld
         EFSVolumeConfiguration:
           FilesystemId: !Ref Efs
           TransitEncryption: ENABLED
       ContainerDefinitions:
-        - Name: factorio
+        - Name: Palworld
           MemoryReservation: 1024
-          Image: !Sub "factoriotools/factorio:${FactorioImageTag}"
+          Image: !Sub "thijsvanloef/palworld-server-docker:${PalworldImageTag}"
           PortMappings:
-          - ContainerPort: 34197
-            HostPort: 34197
+          - ContainerPort: 8211
+            HostPort: 8211
             Protocol: udp
           - ContainerPort: 27015
             HostPort: 27015
-            Protocol: tcp
+            Protocol: udp
           MountPoints:
-          - ContainerPath: /factorio
-            SourceVolume: factorio
+          - ContainerPath: /palworld
+            SourceVolume: palworld
             ReadOnly: false
-          Environment:
-          - Name: UPDATE_MODS_ON_START
-            Value: !Sub "${UpdateModsOnStart}"
-          - Name: DLC_SPACE_AGE
-            Value: !Sub "${DlcSpaceAge}"
 
   # ====================================================
   # SET DNS RECORD
@@ -486,7 +445,7 @@ Resources:
                       },
                   ]
               })
-      Description: Sets Route 53 DNS Record for Factorio
+      Description: Sets Route 53 DNS Record for Palworld
       FunctionName: !Sub "${AWS::StackName}-set-dns"
       Handler: index.handler
       MemorySize: 128
@@ -523,5 +482,5 @@ Resources:
 
 Outputs:
   CheckInstanceIp:
-    Description: To find your Factorio instance IP address, visit the following link. Click on the instance to find its Public IP address.
+    Description: To find your Palworld instance IP address, visit the following link. Click on the instance to find its Public IP address.
     Value: !Sub "https://${AWS::Region}.console.aws.amazon.com/ec2/v2/home?region=${AWS::Region}#Instances:tag:aws:autoscaling:groupName=${AutoScalingGroup};sort=tag:Name"
