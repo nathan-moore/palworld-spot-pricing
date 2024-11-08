@@ -10,7 +10,7 @@ Parameters:
   PalworldImageTag:
     Type: String
     Description: "(Examples include latest, stable, 0.17, 0.17.33) Refer to tag descriptions available here: https://hub.docker.com/r/thijsvanloef/palworld-server-docker)"
-    Default: stable
+    Default: latest
 
   ServerState:
     Type: String
@@ -113,7 +113,6 @@ Conditions:
   KeyPairNameProvided: !Not [ !Equals [ !Ref KeyPairName, '' ] ]
   IpAddressProvided: !Not [ !Equals [ !Ref YourIp, '' ] ]
   DnsConfigEnabled: !And [ !Not [ !Equals [ !Ref HostedZoneId, '' ] ], !Not [ !Equals [ !Ref RecordName, '' ] ] ]
-  DoEnableRcon: !Equals [ !Ref EnableRcon, 'true' ]
   UsingSpotInstance: !Equals [ !Ref InstancePurchaseMode, 'Spot' ]
   InstanceTypeProvided: !Not [ !Equals [ !Ref InstanceType, '' ] ]
 
@@ -360,12 +359,12 @@ Resources:
     - MountB
     Properties:
       Volumes:
-      - Name: Palworld
+      - Name: palworld-server-docker
         EFSVolumeConfiguration:
           FilesystemId: !Ref Efs
           TransitEncryption: ENABLED
       ContainerDefinitions:
-        - Name: Palworld
+        - Name: palworld-server-docker
           MemoryReservation: 1024
           Image: !Sub "thijsvanloef/palworld-server-docker:${PalworldImageTag}"
           PortMappings:
@@ -377,7 +376,7 @@ Resources:
             Protocol: udp
           MountPoints:
           - ContainerPath: /palworld
-            SourceVolume: palworld
+            SourceVolume: palworld-server-docker
             ReadOnly: false
 
   # ====================================================
