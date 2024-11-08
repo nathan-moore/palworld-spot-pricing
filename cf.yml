@@ -36,17 +36,17 @@ Parameters:
   SpotPrice:
     Type: String
     Description: "Spot: the max cents/hr to pay for spot instance. On Demand: Ignored"
-    Default: "0.05"
+    Default: "0.10"
 
   SpotMinMemoryMiB:
     Type: Number
     Description: "Spot: the minimum desired memory for your instance. On Demand: Ignored"
-    Default: 2048
+    Default: 16000
 
   SpotMinVCpuCount:
     Type: Number
     Description: "Spot: the minimum desired VCPUs for your instance. On Demand: Ignored"
-    Default: 2
+    Default: 4
 
   KeyPairName:
     Type: String
