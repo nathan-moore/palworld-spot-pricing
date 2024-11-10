@@ -67,6 +67,241 @@ Parameters:
     Type: String
     Description: (Optional - An empty value disables this feature) If you have a hosted zone in Route 53 and wish to set a DNS record whenever your palworld instance starts, supply the name of the record here (e.g. palworld.mydomain.com).
     Default: ''
+    
+  ServerName:
+    Type: String
+    Description: The name of the Server
+    Default: ""
+  
+  PLAYERS:
+    Type: String
+    Description: The max number of players that are able to join the Server
+    Default: "16"
+    
+  SERVER_DESCRIPTION:
+    Type: String
+    Description: Your Server Description
+    Default: ""
+    
+  SERVER_PASSWORD:
+    Type: String
+    Description: The password for the server
+    Default: ""
+
+  ADMIN_PASSWORD:
+    Type: String
+    Description: The Admin Password Description
+    Default: ""
+    
+  DAYTIME_SPEEDRATE:
+    Type: String
+    Description: Day time speed - Larger number means shorter days
+    Default: "1.000000"
+    
+  NIGHTTIME_SPEEDRATE:
+    Type: String
+    Description: Night time speed - Larger number means shorter nights
+    Default: "1.000000"
+
+  EXP_RATE:
+    Type: String
+    Description: EXP earn rate
+    Default: "1.000000"
+    
+  PAL_CAPTURE_RATE:
+    Type: String
+    Description: Pal capture rate
+    Default: "1.000000"
+
+  PAL_SPAWN_NUM_RATE:
+    Type: String
+    Description: Pal appearance rate
+    Default: "1.000000"
+
+  PAL_DAMAGE_RATE_ATTACK:
+    Type: String
+    Description: Damage from pals multipiler
+    Default: "1.000000"
+
+  PAL_DAMAGE_RATE_DEFENSE:
+    Type: String
+    Description: Damage to pals multipiler
+    Default: "1.000000"
+
+  PLAYER_DAMAGE_RATE_ATTACK:
+    Type: String
+    Description: Damage from player multipiler
+    Default: "1.000000"
+
+  PLAYER_DAMAGE_RATE_DEFENSE:
+    Type: String
+    Description: Damage to player multipiler
+    Default: "1.000000"
+
+  PLAYER_STOMACH_DECREASE_RATE:
+    Type: String
+    Description: Player hunger depletion rate
+    Default: "1.000000"
+
+  PLAYER_STAMINA_DECREASE_RATE:
+    Type: String
+    Description: Player stamina reduction rate
+    Default: "1.000000"
+
+  PLAYER_AUTO_HP_REGEN_RATE:
+    Type: String
+    Description: Player auto HP regeneration rate
+    Default: "1.000000"
+
+  PLAYER_AUTO_HP_REGEN_RATE_IN_SLEEP:
+    Type: String
+    Description: Player sleep HP regeneration rate
+    Default: "1.000000"
+
+  PAL_STOMACH_DECREASE_RATE:
+    Type: String
+    Description: Pal hunger depletion rate
+    Default: "1.000000"
+
+  PAL_STAMINA_DECREASE_RATE:
+    Type: String
+    Description: Pal stamina reduction rate
+    Default: "1.000000"
+
+  PAL_AUTO_HP_REGEN_RATE:
+    Type: String
+    Description: Pal auto HP regeneration rate
+    Default: "1.000000"
+
+  PAL_AUTO_HP_REGEN_RATE_IN_SLEEP:
+    Type: String
+    Description: Pal sleep health regeneration rate (in Palbox)
+    Default: "1.000000"
+
+  BUILD_OBJECT_DAMAGE_RATE:
+    Type: String
+    Description: Damage to structure multipiler
+    Default: "1.000000"
+
+  BUILD_OBJECT_DETERIORATION_DAMAGE_RATE:
+    Type: String
+    Description: Structure determination rate
+    Default: "1.000000"
+
+  COLLECTION_DROP_RATE:
+    Type: String
+    Description: Gatherable items multipiler
+    Default: "1.000000"
+
+  COLLECTION_OBJECT_HP_RATE:
+    Type: String
+    Description: Gatherable objects HP multipiler
+    Default: "1.000000"
+
+  COLLECTION_OBJECT_RESPAWN_SPEED_RATE:
+    Type: String
+    Description: Gatherable objects respawn interval - The smaller the number, the faster the regeneration
+    Default: "1.000000"
+
+  ENEMY_DROP_ITEM_RATE:
+    Type: String
+    Description: Dropped Items Multipiler
+    Default: "1.000000"
+
+  DEATH_PENALTY:
+    Type: String
+    Description: Death Penalty None: No death penalty Item: Drops items other than equipment ItemAndEquipment: Drops all items All: Drops all PALs and all items.
+    Default: "All"
+
+  ENABLE_PLAYER_TO_PLAYER_DAMAGE:
+    Type: String
+    Description: Allows players to cause damage to players
+    Default: "False"
+
+  ENABLE_FRIENDLY_FIRE:
+    Type: String
+    Description: Allow friendly fire
+    Default: "False"
+
+  ENABLE_INVADER_ENEMY:
+    Type: String
+    Description: Enable invaders
+    Default: "True"
+
+  ENABLE_AIM_ASSIST_PAD:
+    Type: String
+    Description: Enable controller aim assist
+    Default: "True"
+
+  ENABLE_AIM_ASSIST_KEYBOARD:
+    Type: String
+    Description: Enable Keyboard aim assist
+    Default: "False"
+
+  DROP_ITEM_MAX_NUM:
+    Type: String
+    Description: Maximum number of drops in the world
+    Default: "3000"
+
+  BASE_CAMP_MAX_NUM:
+    Type: String
+    Description: Maximum number of base camps
+    Default: "128"
+
+  BASE_CAMP_WORKER_MAX_NUM:
+    Type: String
+    Description: Maximum number of workers
+    Default: "15"
+
+  DROP_ITEM_ALIVE_MAX_HOURS:
+    Type: String
+    Description: Time it takes for items to despawn in hours
+    Default: "1.000000"
+
+  AUTO_RESET_GUILD_NO_ONLINE_PLAYERS:
+    Type: String
+    Description: Automatically reset guild when no players are online
+    Default: "False"
+
+  AUTO_RESET_GUILD_TIME_NO_ONLINE_PLAYERS:
+    Type: String
+    Description: Time to automatically reset guild when no players are online
+    Default: "72.000000"
+
+  GUILD_PLAYER_MAX_NUM:
+    Type: String
+    Description: Max player of Guild
+    Default: "20"
+
+  BASE_CAMP_MAX_NUM_IN_GUILD:
+    Type: String
+    Description: Max bases of Guild
+    Default: "4"
+
+  PAL_EGG_DEFAULT_HATCHING_TIME:
+    Type: String
+    Description: Time(h) to incubate massive egg
+    Default: "72.000000"
+
+  WORK_SPEED_RATE:
+    Type: String
+    Description: Work speed muliplier
+    Default: "1"
+
+  AUTO_SAVE_SPAN:
+    Type: String
+    Description: Time between autosaves (seconds)
+    Default: "30.000000"
+
+  COOP_PLAYER_MAX_NUM:
+    Type: String
+    Description: Maximum number of players in a guild
+    Default: "4"
+
+  SUPPLY_DROP_SPAN:
+    Type: String
+    Description: Interval for supply drop (minutes)
+    Default: "180"
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -94,6 +329,56 @@ Metadata:
         Parameters:
         - HostedZoneId
         - RecordName
+      - Label:
+          default: Palworld Config (Optional)
+        Parameters:
+        - ServerName
+        - PLAYERS
+        - SERVER_DESCRIPTION
+        - SERVER_PASSWORD
+        - ADMIN_PASSWORD
+        - DAYTIME_SPEEDRATE
+        - NIGHTTIME_SPEEDRATE
+        - EXP_RATE
+        - PAL_CAPTURE_RATE
+        - PAL_SPAWN_NUM_RATE
+        - PAL_DAMAGE_RATE_ATTACK
+        - PAL_DAMAGE_RATE_DEFENSE
+        - PLAYER_DAMAGE_RATE_ATTACK
+        - PLAYER_DAMAGE_RATE_DEFENSE
+        - PLAYER_STOMACH_DECREASE_RATE
+        - PLAYER_STAMINA_DECREASE_RATE
+        - PLAYER_AUTO_HP_REGEN_RATE
+        - PLAYER_AUTO_HP_REGEN_RATE_IN_SLEEP
+        - PAL_STOMACH_DECREASE_RATE
+        - PAL_STAMINA_DECREASE_RATE
+        - PAL_AUTO_HP_REGEN_RATE
+        - PAL_AUTO_HP_REGEN_RATE_IN_SLEEP
+        - BUILD_OBJECT_DAMAGE_RATE
+        - BUILD_OBJECT_DETERIORATION_DAMAGE_RATE
+        - COLLECTION_DROP_RATE
+        - COLLECTION_OBJECT_HP_RATE
+        - COLLECTION_OBJECT_RESPAWN_SPEED_RATE
+        - ENEMY_DROP_ITEM_RATE
+        - DEATH_PENALTY
+        - ENABLE_PLAYER_TO_PLAYER_DAMAGE
+        - ENABLE_FRIENDLY_FIRE
+        - ENABLE_INVADER_ENEMY
+        - ENABLE_AIM_ASSIST_PAD
+        - ENABLE_AIM_ASSIST_KEYBOARD
+        - DROP_ITEM_MAX_NUM
+        - BASE_CAMP_MAX_NUM
+        - BASE_CAMP_WORKER_MAX_NUM
+        - DROP_ITEM_ALIVE_MAX_HOURS
+        - AUTO_RESET_GUILD_NO_ONLINE_PLAYERS
+        - AUTO_RESET_GUILD_TIME_NO_ONLINE_PLAYERS
+        - GUILD_PLAYER_MAX_NUM
+        - BASE_CAMP_MAX_NUM_IN_GUILD
+        - PAL_EGG_DEFAULT_HATCHING_TIME
+        - WORK_SPEED_RATE
+        - AUTO_SAVE_SPAN
+        - COOP_PLAYER_MAX_NUM
+        - SUPPLY_DROP_SPAN
     ParameterLabels:
       PalworldImageTag:
         default: "Which version of Palworld do you want to launch?"
@@ -378,7 +663,101 @@ Resources:
           - ContainerPath: /palworld
             SourceVolume: palworld-server-docker
             ReadOnly: false
-
+          Environment:
+            - Name: SERVER_NAME
+              Value: !Sub "${ServerName}"
+            - Name: PLAYERS
+              Value: !Sub "${PLAYERS}"
+            - Name: SERVER_DESCRIPTION
+              Value: !Sub "${SERVER_DESCRIPTION}"
+             - Name: SERVER_PASSWORD
+              Value: !Sub "${SERVER_PASSWORD}"
+            - Name: ADMIN_PASSWORD
+              Value: !Sub "${ADMIN_PASSWORD}"
+            - Name: DAYTIME_SPEEDRATE
+              Value: !Sub "${DAYTIME_SPEEDRATE}"
+            - Name: NIGHTTIME_SPEEDRATE
+              Value: !Sub "${NIGHTTIME_SPEEDRATE}"
+            - Name: EXP_RATE
+              Value: !Sub "${EXP_RATE}"
+            - Name: PAL_CAPTURE_RATE
+              Value: !Sub "${PAL_CAPTURE_RATE}"
+            - Name: PAL_SPAWN_NUM_RATE
+              Value: !Sub "${PAL_SPAWN_NUM_RATE}"
+            - Name: PAL_DAMAGE_RATE_ATTACK
+              Value: !Sub "${PAL_DAMAGE_RATE_ATTACK}"
+            - Name: PAL_DAMAGE_RATE_DEFENSE
+              Value: !Sub "${PAL_DAMAGE_RATE_DEFENSE}"
+            - Name: PLAYER_DAMAGE_RATE_ATTACK
+              Value: !Sub "${PLAYER_DAMAGE_RATE_ATTACK}"
+            - Name: PLAYER_DAMAGE_RATE_DEFENSE
+              Value: !Sub "${PLAYER_DAMAGE_RATE_DEFENSE}"
+            - Name: PLAYER_STOMACH_DECREASE_RATE
+              Value: !Sub "${PLAYER_STOMACH_DECREASE_RATE}"
+            - Name: PLAYER_STAMINA_DECREASE_RATE
+              Value: !Sub "${PLAYER_STAMINA_DECREASE_RATE}"
+            - Name: PLAYER_AUTO_HP_REGEN_RATE
+              Value: !Sub "${PLAYER_AUTO_HP_REGEN_RATE}"
+            - Name: PLAYER_AUTO_HP_REGEN_RATE_IN_SLEEP
+              Value: !Sub "${PLAYER_AUTO_HP_REGEN_RATE_IN_SLEEP}"
+             - Name: PAL_STOMACH_DECREASE_RATE
+              Value: !Sub "${PAL_STOMACH_DECREASE_RATE}"
+            - Name: PAL_STAMINA_DECREASE_RATE
+              Value: !Sub "${PAL_STAMINA_DECREASE_RATE}"
+            - Name: PAL_AUTO_HP_REGEN_RATE
+              Value: !Sub "${PAL_AUTO_HP_REGEN_RATE}"
+            - Name: PAL_AUTO_HP_REGEN_RATE_IN_SLEEP
+              Value: !Sub "${PAL_AUTO_HP_REGEN_RATE_IN_SLEEP}"
+            - Name: BUILD_OBJECT_DAMAGE_RATE
+              Value: !Sub "${BUILD_OBJECT_DAMAGE_RATE}"
+            - Name: BUILD_OBJECT_DETERIORATION_DAMAGE_RATE
+              Value: !Sub "${BUILD_OBJECT_DETERIORATION_DAMAGE_RATE}"
+            - Name: COLLECTION_DROP_RATE
+              Value: !Sub "${COLLECTION_DROP_RATE}"
+            - Name: COLLECTION_OBJECT_HP_RATE
+              Value: !Sub "${COLLECTION_OBJECT_HP_RATE}"
+            - Name: COLLECTION_OBJECT_RESPAWN_SPEED_RATE
+              Value: !Sub "${COLLECTION_OBJECT_RESPAWN_SPEED_RATE}"
+            - Name: ENEMY_DROP_ITEM_RATE
+              Value: !Sub "${ENEMY_DROP_ITEM_RATE}"
+            - Name: DEATH_PENALTY
+              Value: !Sub "${DEATH_PENALTY}"
+            - Name: ENABLE_PLAYER_TO_PLAYER_DAMAGE
+              Value: !Sub "${ENABLE_PLAYER_TO_PLAYER_DAMAGE}"     
+            - Name: ENABLE_FRIENDLY_FIRE
+              Value: !Sub "${ENABLE_FRIENDLY_FIRE}"
+            - Name: ENABLE_INVADER_ENEMY
+              Value: !Sub "${ENABLE_INVADER_ENEMY}"
+            - Name: ENABLE_AIM_ASSIST_PAD
+              Value: !Sub "${ENABLE_AIM_ASSIST_PAD}"
+             - Name: ENABLE_AIM_ASSIST_KEYBOARD
+              Value: !Sub "${ENABLE_AIM_ASSIST_KEYBOARD}"
+            - Name: DROP_ITEM_MAX_NUM
+              Value: !Sub "${DROP_ITEM_MAX_NUM}"
+            - Name: BASE_CAMP_MAX_NUM
+              Value: !Sub "${BASE_CAMP_MAX_NUM}"
+            - Name: BASE_CAMP_WORKER_MAX_NUM
+              Value: !Sub "${BASE_CAMP_WORKER_MAX_NUM}"
+            - Name: DROP_ITEM_ALIVE_MAX_HOURS
+              Value: !Sub "${DROP_ITEM_ALIVE_MAX_HOURS}"
+            - Name: AUTO_RESET_GUILD_NO_ONLINE_PLAYERS
+              Value: !Sub "${AUTO_RESET_GUILD_NO_ONLINE_PLAYERS}"
+            - Name: AUTO_RESET_GUILD_TIME_NO_ONLINE_PLAYERS
+              Value: !Sub "${AUTO_RESET_GUILD_TIME_NO_ONLINE_PLAYERS}"
+            - Name: GUILD_PLAYER_MAX_NUM
+              Value: !Sub "${GUILD_PLAYER_MAX_NUM}"
+            - Name: BASE_CAMP_MAX_NUM_IN_GUILD
+              Value: !Sub "${BASE_CAMP_MAX_NUM_IN_GUILD}"
+            - Name: PAL_EGG_DEFAULT_HATCHING_TIME
+              Value: !Sub "${PAL_EGG_DEFAULT_HATCHING_TIME}"
+            - Name: WORK_SPEED_RATE
+              Value: !Sub "${WORK_SPEED_RATE}"
+            - Name: AUTO_SAVE_SPAN
+              Value: !Sub "${AUTO_SAVE_SPAN}"
+            - Name: COOP_PLAYER_MAX_NUM
+              Value: !Sub "${COOP_PLAYER_MAX_NUM}"
+            - Name: SUPPLY_DROP_SPAN
+              Value: !Sub "${SUPPLY_DROP_SPAN}"              
   # ====================================================
   # SET DNS RECORD
   # ====================================================
